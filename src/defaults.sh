@@ -3,6 +3,7 @@
 [ -z "$UPLINK" ] && UPLINK=880
 [ -z "$DOWNLINK" ] && DOWNLINK=5760
 [ -z "$IFACE" ] && IFACE=ppp0
+[ -z "$ETH_IFACE" ] && ETH_IFACE=eth1
 [ -z "$QDISC" ] && QDISC=fq_codel
 [ -z "$LLAM" ] && LLAM="tc_stab"
 [ -z "$LINKLAYER" ] && LINKLAYER="atm"

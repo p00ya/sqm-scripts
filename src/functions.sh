@@ -609,16 +609,16 @@ diffserv_pppoe() {
 }
 
 eth_setup() {
-    ethtool -K $IFACE gso off
-    ethtool -K $IFACE tso off
-    ethtool -K $IFACE ufo off
-    ethtool -K $IFACE gro off
+    ethtool -K $ETH_IFACE gso off
+    ethtool -K $ETH_IFACE tso off
+    ethtool -K $ETH_IFACE ufo off
+    ethtool -K $ETH_IFACE gro off
 
-    if [ -e /sys/class/net/$IFACE/queues/tx-0/byte_queue_limits ]
+    if [ -e /sys/class/net/$ETH_IFACE/queues/tx-0/byte_queue_limits ]
     then
-       for i in /sys/class/net/$IFACE/queues/tx-*/byte_queue_limits
+       for i in /sys/class/net/$ETH_IFACE/queues/tx-*/byte_queue_limits
        do
-          echo $(( 4 * $( get_mtu ${IFACE} ) )) > $i/limit_max
+          echo $(( 4 * $( get_mtu ${ETH_IFACE} ) )) > $i/limit_max
        done
     fi
 }
