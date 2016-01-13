@@ -37,8 +37,8 @@ ipt() {
     [ "$d" != "$*" ] && {
 	sqm_trace "iptables ${d}"
         iptables $d >> ${OUTPUT_TARGET} 2>&1
-	sqm_trace "ip6tables ${d}"
-        ip6tables $d >> ${OUTPUT_TARGET} 2>&1
+	#sqm_trace "ip6tables ${d}"
+        #ip6tables $d >> ${OUTPUT_TARGET} 2>&1
     }
     d=$(echo $* | sed s/-I/-D/g)
     [ "$d" != "$*" ] && {
@@ -49,8 +49,8 @@ ipt() {
     }
     sqm_trace "iptables $*"
     iptables $* >> ${OUTPUT_TARGET} 2>&1
-    sqm_trace "ip6tables ${d}"
-    ip6tables $* >> ${OUTPUT_TARGET} 2>&1
+    #sqm_trace "ip6tables ${d}"
+    #ip6tables $* >> ${OUTPUT_TARGET} 2>&1
 }
 
 #sm: wrapper to call tc to allow debug logging
@@ -72,17 +72,6 @@ do_modules() {
     for m in $ALL_MODULES; do
         [ -d /sys/modules/${m} ] && ${INSMOD} $m 2>>${OUTPUT_TARGET}
     done
-}
-
-# Write a state file to the filename given as $1. The remaining arguments are
-# variable names that should be written to the state file.
-write_state_file() {
-    local filename=$1
-    shift
-    for var in "$@"; do
-        val=$(eval echo '$'$var)
-        echo "$var=\"$val\""
-    done > $filename
 }
 
 

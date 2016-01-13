@@ -8,6 +8,16 @@ all:
 
 install: install-$(PLATFORM)
 
+.PHONY: install-minimal
+
+install-minimal:
+	install -m 0755 -d $(DESTDIR)/build $(DESTDIR)/etc/ppp/ip-up.d
+	for f in src/*.qos ; do \
+	  t="$(DESTDIR)/build/$$(basename $$f)" ; \
+	  cat src/ip-up.sh src/defaults.sh src/functions.sh "$$f" src/ip-updown-footer.sh |grep -v '^\. ' > "$$t" ; \
+          install -m 0755 "$$t" $(DESTDIR)/etc/ppp/ip-up.d/sqm-start."$$(basename $$f)" ; \
+	done
+	rm -rf $(DESTDIR)/build
 
 .PHONY: install-openwrt
 
