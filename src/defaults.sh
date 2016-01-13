@@ -1,11 +1,11 @@
 # You need to jiggle these parameters. Note limits are tuned towards a <10Mbit uplink <60Mbup down
 
-[ -z "$UPLINK" ] && UPLINK=2302
-[ -z "$DOWNLINK" ] && DOWNLINK=14698
-[ -z "$IFACE" ] && IFACE=eth0
+[ -z "$UPLINK" ] && UPLINK=880
+[ -z "$DOWNLINK" ] && DOWNLINK=5760
+[ -z "$IFACE" ] && IFACE=ppp0
 [ -z "$QDISC" ] && QDISC=fq_codel
 [ -z "$LLAM" ] && LLAM="tc_stab"
-[ -z "$LINKLAYER" ] && LINKLAYER="none"
+[ -z "$LINKLAYER" ] && LINKLAYER="atm"
 [ -z "$OVERHEAD" ] && OVERHEAD=0
 [ -z "$STAB_MTU" ] && STAB_MTU=2047
 [ -z "$STAB_MPU" ] && STAB_MPU=0
